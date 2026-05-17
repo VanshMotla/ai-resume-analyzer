@@ -2,7 +2,7 @@
 FILE PROCESSOR - Extract text from PDF and DOCX files
 """
 
-import pymupdf  # PyMuPDF
+import fitz
 from docx import Document
 import re
 
