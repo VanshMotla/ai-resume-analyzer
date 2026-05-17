@@ -3,7 +3,6 @@ setuptools
 fastapi==0.104.1
 uvicorn==0.24.0
 python-multipart==0.0.6
-pypdf
 PyMuPDF==1.23.26
 python-docx==1.1.0
 spacy>=3.7.2,<3.8.0
