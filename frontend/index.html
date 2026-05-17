@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Analyzer - Smart Career Insights</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🎯</span>
+                <h1>AI Resume Analyzer</h1>
+            </div>
+            <p class="tagline">Get AI-powered insights to land your dream job</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Upload Section -->
+            <section class="upload-section" id="uploadSection">
+                <div class="card">
+                    <h2>📄 Upload Your Resume</h2>
+                    <p class="subtitle">Get instant AI-powered analysis and improvement suggestions</p>
+                    
+                    <form id="analyzeForm">
+                        <!-- Resume Upload -->
+                        <div class="form-group">
+                            <label for="resumeFile">
+                                <span class="label-icon">📎</span>
+                                Resume File (PDF or DOCX)
+                            </label>
+                            <div class="file-upload-wrapper">
+                                <input type="file" id="resumeFile" name="resume" accept=".pdf,.docx" required>
+                                <div class="file-upload-display">
+                                    <span class="file-icon">📄</span>
+                                    <span class="file-name">No file selected</span>
+                                    <button type="button" class="browse-btn">Browse</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Job Description -->
+                        <div class="form-group">
+                            <label for="jobDescription">
+                                <span class="label-icon">💼</span>
+                                Job Description
+                            </label>
+                            <textarea 
+                                id="jobDescription" 
+                                name="job_description" 
+                                rows="8" 
+                                placeholder="Paste the complete job description here...
+
+Example:
+We are looking for a skilled Software Engineer with experience in Python, JavaScript, and cloud technologies. The ideal candidate will have:
+- 3+ years of software development experience
+- Strong knowledge of React, Node.js, and AWS
+- Experience with CI/CD pipelines
+- Bachelor's degree in Computer Science or related field"
+                                required
+                            ></textarea>
+                            <div class="char-counter">
+                                <span id="charCount">0</span> characters (minimum 50 required)
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary" id="analyzeBtn">
+                            <span class="btn-icon">🚀</span>
+                            Analyze Resume
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Loading Section -->
+            <section class="loading-section hidden" id="loadingSection">
+                <div class="card">
+                    <div class="loading-spinner"></div>
+                    <h3>Analyzing Your Resume...</h3>
+                    <p class="loading-text">Our AI is processing your resume and comparing it with the job description</p>
+                    <div class="loading-steps">
+                        <div class="loading-step">✓ Extracting text from resume</div>
+                        <div class="loading-step">✓ Analyzing keywords and skills</div>
+                        <div class="loading-step">⏳ Calculating match scores</div>
+                        <div class="loading-step">⏳ Checking ATS compatibility</div>
+                        <div class="loading-step">⏳ Generating suggestions</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section hidden" id="resultsSection">
+                
+                <!-- Overall Score Card -->
+                <div class="card score-card">
+                    <div class="score-header">
+                        <h2>📊 Analysis Results</h2>
+                        <div class="match-badge" id="matchBadge">Good Match</div>
+                    </div>
+                    
+                    <div class="overall-score">
+                        <div class="score-circle" id="overallScoreCircle">
+                            <svg width="200" height="200">
+                                <circle cx="100" cy="100" r="90" class="score-bg"></circle>
+                                <circle cx="100" cy="100" r="90" class="score-fill" id="scoreFillCircle"></circle>
+                            </svg>
+                            <div class="score-value">
+                                <span class="score-number" id="overallScoreNumber">0</span>
+                                <span class="score-label">Overall Match</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Scores -->
+                <div class="card">
+                    <h3>🎯 Detailed Scores</h3>
+                    <div class="scores-grid">
+                        <div class="score-item">
+                            <div class="score-item-header">
+                                <span class="score-item-icon">🔑</span>
+                                <span class="score-item-title">Keyword Match</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="keywordProgress"></div>
+                            </div>
+                            <span class="score-item-value" id="keywordScore">0%</span>
+                        </div>
+
+                        <div class="score-item">
+                            <div class="score-item-header">
+                                <span class="score-item-icon">🧠</span>
+                                <span class="score-item-title">Semantic Similarity</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="semanticProgress"></div>
+                            </div>
+                            <span class="score-item-value" id="semanticScore">0%</span>
+                        </div>
+
+                        <div class="score-item">
+                            <div class="score-item-header">
+                                <span class="score-item-icon">💻</span>
+                                <span class="score-item-title">Skill Match</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="skillProgress"></div>
+                            </div>
+                            <span class="score-item-value" id="skillScore">0%</span>
+                        </div>
+
+                        <div class="score-item">
+                            <div class="score-item-header">
+                                <span class="score-item-icon">🤖</span>
+                                <span class="score-item-title">ATS Compatibility</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="atsProgress"></div>
+                            </div>
+                            <span class="score-item-value" id="atsScore">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Analysis -->
+                <div class="card">
+                    <h3>💡 Skills Analysis</h3>
+                    <div class="skills-container">
+                        <div class="skills-column">
+                            <h4 class="skills-heading matched">✅ Matched Skills</h4>
+                            <div class="skills-list" id="matchedSkills">
+                                <span class="skill-tag matched">Loading...</span>
+                            </div>
+                        </div>
+                        <div class="skills-column">
+                            <h4 class="skills-heading missing">❌ Missing Skills</h4>
+                            <div class="skills-list" id="missingSkills">
+                                <span class="skill-tag missing">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Keywords Analysis -->
+                <div class="card">
+                    <h3>🔍 Keywords Analysis</h3>
+                    <div class="keywords-container">
+                        <div class="keywords-column">
+                            <h4 class="keywords-heading matched">Matched Keywords</h4>
+                            <div class="keywords-list" id="matchedKeywords">
+                                Loading...
+                            </div>
+                        </div>
+                        <div class="keywords-column">
+                            <h4 class="keywords-heading missing">Missing Keywords</h4>
+                            <div class="keywords-list" id="missingKeywords">
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insights -->
+                <div class="insights-grid">
+                    <!-- Strengths -->
+                    <div class="card insight-card">
+                        <h3 class="insight-title strengths">💪 Strengths</h3>
+                        <ul class="insight-list" id="strengthsList">
+                            <li>Loading...</li>
+                        </ul>
+                    </div>
+
+                    <!-- Weaknesses -->
+                    <div class="card insight-card">
+                        <h3 class="insight-title weaknesses">⚠️ Areas to Improve</h3>
+                        <ul class="insight-list" id="weaknessesList">
+                            <li>Loading...</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Suggestions -->
+                <div class="card">
+                    <h3>🎯 AI-Powered Suggestions</h3>
+                    <div class="suggestions-list" id="suggestionsList">
+                        <div class="suggestion-item">Loading...</div>
+                    </div>
+                </div>
+
+                <!-- ATS Compatibility -->
+                <div class="card">
+                    <h3>🤖 ATS Compatibility Report</h3>
+                    <div class="ats-report">
+                        <div class="ats-score-badge" id="atsScoreBadge">
+                            <span class="ats-score-value" id="atsScoreValue">0</span>
+                            <span class="ats-score-label">/100</span>
+                        </div>
+                        <div class="ats-details">
+                            <div class="ats-section">
+                                <h4>Issues Detected:</h4>
+                                <ul id="atsIssues">
+                                    <li>Loading...</li>
+                                </ul>
+                            </div>
+                            <div class="ats-section">
+                                <h4>Recommendations:</h4>
+                                <ul id="atsRecommendations">
+                                    <li>Loading...</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="window.print()">
+                        <span class="btn-icon">🖨️</span>
+                        Print Report
+                    </button>
+                    <button class="btn btn-primary" onclick="location.reload()">
+                        <span class="btn-icon">🔄</span>
+                        Analyze Another Resume
+                    </button>
+                </div>
+
+            </section>
+
+            <!-- Error Section -->
+            <section class="error-section hidden" id="errorSection">
+                <div class="card error-card">
+                    <h3>❌ Error</h3>
+                    <p id="errorMessage">Something went wrong. Please try again.</p>
+                    <button class="btn btn-primary" onclick="location.reload()">
+                        <span class="btn-icon">🔄</span>
+                        Try Again
+                    </button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Built with ❤️ by Vansh | AI-Powered Resume Analysis</p>
+            <p class="footer-note">Your data is processed securely and not stored permanently</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

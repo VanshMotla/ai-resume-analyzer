@@ -1,0 +1,59 @@
+# Sample Resume Text (for testing without file upload)
+
+JOHN DOE
+Software Engineer | AI Enthusiast
+Email: john.doe@email.com | Phone: +1-234-567-8900
+LinkedIn: linkedin.com/in/johndoe | GitHub: github.com/johndoe
+
+PROFESSIONAL SUMMARY
+Results-driven Software Engineer with 4 years of experience in Python development, machine learning, and cloud technologies. Proven track record of building scalable applications and implementing AI solutions. Strong problem-solving skills with expertise in FastAPI, Django, and AWS.
+
+TECHNICAL SKILLS
+• Programming Languages: Python, JavaScript, SQL, Java
+• Web Frameworks: FastAPI, Django, Flask, React
+• Machine Learning: scikit-learn, TensorFlow, PyTorch, Pandas, NumPy
+• Databases: PostgreSQL, MySQL, MongoDB, Redis
+• Cloud & DevOps: AWS (EC2, S3, Lambda), Docker, Kubernetes, Jenkins
+• Tools: Git, JIRA, VS Code, Postman
+
+PROFESSIONAL EXPERIENCE
+
+Senior Python Developer | Tech Solutions Inc. | Jan 2022 - Present
+• Developed and deployed 15+ REST APIs using FastAPI, serving 100K+ daily requests
+• Implemented machine learning models using scikit-learn, improving prediction accuracy by 25%
+• Built automated CI/CD pipelines with Jenkins and Docker, reducing deployment time by 40%
+• Collaborated with cross-functional teams to deliver 5 major product features
+• Optimized database queries, reducing response time by 35%
+
+Software Engineer | DataCorp | Jun 2020 - Dec 2021
+• Created data processing pipelines using Python and Apache Spark
+• Developed web scraping tools that collected data from 50+ sources daily
+• Built interactive dashboards with React and D3.js
+• Worked with PostgreSQL and MongoDB for data storage solutions
+• Participated in code reviews and mentored 2 junior developers
+
+Junior Developer | StartupHub | Jan 2019 - May 2020
+• Assisted in developing web applications using Django and JavaScript
+• Wrote unit tests achieving 85% code coverage
+• Debugged and resolved 100+ production issues
+• Contributed to API documentation and technical guides
+
+EDUCATION
+Bachelor of Technology in Computer Science
+University of Technology | 2015 - 2019 | GPA: 3.8/4.0
+
+PROJECTS
+AI-Powered Resume Analyzer | 2024
+• Built full-stack application using FastAPI and NLP for resume analysis
+• Implemented TF-IDF and cosine similarity for keyword matching
+• Achieved 80% accuracy in ATS compatibility detection
+
+E-commerce Recommendation System | 2023
+• Developed collaborative filtering system using Python and scikit-learn
+• Processed 1M+ user interactions for personalized recommendations
+• Increased user engagement by 30%
+
+CERTIFICATIONS
+• AWS Certified Solutions Architect - Associate (2023)
+• Python for Data Science - Coursera (2022)
+• Machine Learning Specialization - Stanford Online (2021)
