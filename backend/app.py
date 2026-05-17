@@ -11,7 +11,7 @@ import os
 import shutil
 from datetime import datetime
 
-from file_processor import FileProcessor
+from resume_processor import FileProcessor
 from ai_analyzer import AIAnalyzer
 
 
