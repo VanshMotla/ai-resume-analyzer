@@ -1,7 +1,8 @@
 """
 FILE PROCESSOR - Extract text from PDF and DOCX files
 """
-import pymupdf as fitz
+
+import fitz
 from docx import Document
 import re
 
@@ -13,7 +14,7 @@ class FileProcessor:
     def extract_text_from_pdf(file_path):
         """Extract text from PDF file"""
         try:
-            doc = pymupdf.open(file_path)
+            doc = fitz.open(file_path)
 
             text = ""
 
